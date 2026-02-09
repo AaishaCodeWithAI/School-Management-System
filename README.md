@@ -37,7 +37,7 @@ This project simulates a simple school/college management system where users can
 
 * Add teacher details
 * View teacher list
-* Display Student details (Name, Subject Assigned)
+* Display teacher details (Name, Subject Assigned)
 
 **💰 Fee Payment System**
 * Add fee payment records
