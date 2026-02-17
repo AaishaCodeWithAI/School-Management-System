@@ -39,10 +39,6 @@ This project simulates a simple school/college management system where users can
 * View teacher list
 * Display teacher details (Name, Subject Assigned)
 
-**💰 Fee Payment System**
-* Add fee payment records
-* View fee-related information
-
 **📊 Dashboard**
 
 * Central dashboard to navigate between modules
@@ -52,76 +48,81 @@ This project simulates a simple school/college management system where users can
 
 ## 🗂️ Project Structure
 
+```
 School_Management_System/
----
-└── src/
----
-     └── School_Management_System
-            ├── Main
-            |    └── MainApp.java
-            |
-            ├── GUI/
-            │     └── SchoolGUI.java
-            ├── Window/
-            │     ├── LoginWindow.java
-            │     ├── RegisterWindow.java
-            │     └── DashboardWindow.java
-            ├── Forms/ 
-            │     ├── StudentForm.java
-            │     ├── TeacherForm.java
-            │     ├── FeePaymentForm.java
-            │
-            ├── Model/
-            |     ├── Person.java
-            │     ├── Student.java
-            │     ├── Teacher.java
-            │     ├── User.java
-            |     ├── Course.java
-            |     ├── Enrollment.java
-            |     └── Grade.java
-            │
-            ├── Service/
-            |       ├── SchoolService.java
-            |       ├── StudentService.java
-            |       ├── CourseService.java
-            |       ├── EnrollmentService.java
-            |       ├── GradeService.java
-            |       └── ResultService.java
-            | 
-            ├── Exception/
-            |       ├── OperationFailedException.java
-            |       ├── DataNotFoundException.java
-            |       ├── DuplicateRecordException.java
-            |       └── InvalidInputException.java
-            |
-            ├── Panels/
-            |       ├── StudentPanel.java
-            |       ├── TeacherPanel.java
-            |       ├── AdminPanel.java
-            |       ├── CoursePanel.java
-            |       └── LoginPanel.java
-            |
-            ├── Data/
-            |       └── DataStore.java
-            |
-            ├── DataBase_Connection/
-            |       └── DBConnection.java
-            |
-            ├── Widgets/
-            |       └── EntityTableModel.java
-            |
-            └── Util/
-                    ├── Constants.java
-                    └── ValidationUtil.java
-
----
+│
+├── src/
+│   └── School_Management_System/
+│       ├── Main/
+│       │   └── MainApp.java
+│       │
+│       ├── GUI/
+│       │   └── SchoolGUI.java
+│       │
+│       ├── Window/
+│       │   ├── LoginWindow.java
+│       │   ├── RegisterWindow.java
+│       │   └── DashboardWindow.java
+│       │
+│       ├── Model/
+│       │   ├── AuditLog.java
+│       │   ├── Person.java
+│       │   ├── Student.java
+│       │   ├── Teacher.java
+│       │   ├── User.java
+│       │   ├── Course.java
+│       │   ├── Enrollment.java
+│       │   └── Grade.java
+│       │
+│       ├── Service/
+│       │   ├── SchoolService.java
+│       │   ├── StudentService.java
+│       │   └── CourseService.java
+│       │
+│       ├── Exception/
+│       │   ├── DataNotFoundException.java
+│       │   ├── DuplicateRecordException.java
+│       │   └── InvalidInputException.java
+│       │
+│       ├── Panels/
+│       │   ├── StudentPanel.java
+│       │   └── CoursePanel.java
+│       │
+│       ├── Data/
+│       │   ├── DatabaseUtil.java
+│       │   ├── SQLDataStore.java
+│       │   └── DataStore.java
+│       │
+│       ├── DataBase_Connection/
+│       │   └── DBConnection.java
+│       │
+│       ├── DAO/
+│       │   ├── AuditLogDAO.java
+│       │   ├── UserDAO.java
+│       │   └── impl/
+│       │       ├── AuditLogDAOImpl.java
+│       │       └── UserDAOImpl.java
+│       │
+│       ├── Widgets/
+│       │   └── EntityTableModel.java
+│       │
+│       └── Util/
+│           ├── Constants.java
+│           └── ValidationUtil.java
+│
+├── Lib/
+│   └── mysql-connector-j-9.5.0.jar
+│
+├── pom.xml
+└── .gitignore
+```
 
 ## 🛠️ Technologies Used
 
 * Java (JDK 8 or above)
 * Java Swing for GUI
 * AWT for layouts and events
-* IDE: Eclipse / IntelliJ IDEA / NetBeans / Vs Code
+* IDE: IntelliJ IDEA / Vs Code
 
 ---
 
@@ -140,7 +141,7 @@ School_Management_System/
 * Hands-on experience with Java Swing
 * Clear understanding of GUI + Service separation
 * Improved debugging skills (type mismatch, getters/setters, packages)
-* Foundation for advanced projects (Database, JDBC, JavaFX)
+* Foundation for advanced projects (Database, JDBC)
 
 ---
 
@@ -150,6 +151,7 @@ School_Management_System/
 * Role-based access (Admin / Teacher / Student)
 * Attendance management
 * Report generation
+* Bill Management
 * Improved UI design
 
 ---
