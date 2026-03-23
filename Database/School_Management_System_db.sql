@@ -25,10 +25,10 @@ CREATE TABLE courses (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO courses (code, name, credits)
+INSERT INTO courses (course_id, code, name, credits)
 VALUES
-('CS123', 'Cyber Security', 3),
-('AI101', 'Artificial Intelligence', 3);
+(1, 'CS123', 'Cyber Security', 3),
+(2, 'AI101', 'Artificial Intelligence', 3);
 
 -- =========================================
 -- STUDENTS TABLE (NORMALIZED ✅)
@@ -57,16 +57,17 @@ VALUES
 CREATE TABLE teachers (
     employee_no VARCHAR(20) PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
-    phone VARCHAR(20),
+    phone VARCHAR(20), 
     username VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
+    email VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO teachers
-(employee_no, full_name, phone, username, password)
+(employee_no, full_name, phone, username, password, email)
 VALUES
-('55001', 'John Doe', '9815001234', 'johnd', 'JohnD@123');
+('55001', 'John Doe', '9815001234', 'johnd', 'JohnD@123', johndoe@example.com);
 
 -- =========================================
 -- TEACHER-COURSE RELATION (MANY-TO-MANY ✅)
@@ -100,45 +101,66 @@ VALUES
 -- =========================================
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    full_name VARCHAR(50) NOT NULL,
     username VARCHAR(50) UNIQUE NOT NULL,
-    password_hash TEXT NOT NULL,
-    salt TEXT NOT NULL,
     role user_role NOT NULL,
     linked_person_id VARCHAR(20),
     is_active BOOLEAN DEFAULT TRUE,
     failed_attempts INT DEFAULT 0,
     last_login TIMESTAMP,
+    full_name VARCHAR(50) NOT NULL,
+    email VARCHAR (50),
+    phone VARCHAR (50),
+    plain_password(50) VARCHAR (50) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (full_name, username, password_hash, salt, role, linked_person_id)
+INSERT INTO users (id, full_name, username, role, linked_person_id, is_active, )
 VALUES
-('Nolan Shrestha','nolan678', 'HASHED_ADMIN_PASS', 'SALT1', 'ADMIN', '66001'),
-('Alice Smith','alice123', 'HASHED_PASS', 'SALT2', 'STUDENT', 'LC11103'),
-('John Doe','johnd', 'HASHED_PASS', 'SALT3', 'TEACHER', '55001');
+(1, 'nolan678', 'ADMIN', '66001', true, 0, NULL, 'Nolan Shrestha', nolan@kfaltd.com, 9815609454, NolanS&123),
+(2, 'alice123', 'STUDENT', 'LC11103', true, 0, NULL,  'Alice Smith', alice@example.com, 9815609454, AliceS@123),
+(3, 'johnd', 'TEACHER', '55001', true, 0, NULL, 'John Doe', johndoe@example.com, 9815001234, JohnD@123);
 
 -- =========================================
--- REGISTRATION REQUESTS
+-- STUDENTS REGISTRATION REQUESTS
 -- =========================================
-CREATE TABLE registration_requests (
-    request_id SERIAL PRIMARY KEY,
-    lc_number VARCHAR(20),
+CREATE TABLE student_registration_requests (
     full_name VARCHAR(100) NOT NULL,
     email VARCHAR(100),
     phone VARCHAR(20),
-    role user_role NOT NULL,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
     status VARCHAR(20) DEFAULT 'PENDING'
-        CHECK (status IN ('PENDING','APPROVED','REJECTED')),
+        CHECK (status IN ('PENDING', 'APPROVED', 'REJECTED')),
+    request_id SERIAL PRIMARY KEY,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO registration_requests (lc_number, full_name, email, phone, role, username, password)
+INSERT INTO registration_requests (lc_number, full_name, email, phone, username, password)
 VALUES
-('LC11004', 'Bob Johnson', 'bob@example.com', '9815005678', 'STUDENT', 'bobj815', 'BobJ%815'),
-('LC11005', 'Clara Smith', 'clara@example.com', '9815009876', 'TEACHER', 'claras453', 'ClaraS#453');
+('Bob Smith', 'bob.smith@student.com', '555-5678', 'bobsmith', 'securepass', 'LC11007'),
+('Clara Lee', 'clara.lee@student.com', '555-9012', 'claralee', 'mypassword', 'LC11008'),
+('Alice Johnson', 'alice.johnson@student.com', '555-1234', 'alicej', 'password123', 'LC11006');
+
+-- =========================================
+-- TEACHERS REGISTRATION REQUESTS
+-- =========================================
+CREATE TABLE teachers_registration_requests (
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    phone VARCHAR(20),
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    status VARCHAR(20) DEFAULT 'PENDING'
+        CHECK (status IN ('PENDING', 'APPROVED', 'REJECTED')),
+    request_id SERIAL PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO registration_requests (lc_number, full_name, email, phone, username, password)
+VALUES
+('David Brown', 'david.brown@teacher.com', '555-2345', 'davidb', 'teachpass', '55002')
+('Eva Green', 'eva.green@teacher.com', '555-6789', 'evagreen', 'strongpass', '55003'),
+('Frank White', 'frank.white@teacher.com', '555-3456', 'frankw', 'pass1234', '55004');
 
 -- =========================================
 -- LOGIN AUDIT (SECURITY 🔐)
