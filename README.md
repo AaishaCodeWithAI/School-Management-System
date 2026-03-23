@@ -129,6 +129,9 @@ School_Management_System/
 │           └── ValidationUtil.java
 │
 │
+├── External Libraries/
+|       ├── jdk-25
+│       └── postgresql-42.7.10 
 ├── pom.xml
 └── .gitignore
 ```
