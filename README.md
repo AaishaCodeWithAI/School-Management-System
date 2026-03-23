@@ -17,6 +17,8 @@ This project simulates a simple school/college management system where users can
 * Understand package-based project structure (GUI, Model, Service)
 * Practice OOP concepts like classes, objects, inheritance, polymorphism and encapsulation
 * Create a real-world inspired academic management system
+* Role-based access (Admin / Teacher / Student)
+* To understand the Database format work integration using Postgres + JDBC.
 
 ---
 
@@ -31,18 +33,18 @@ This project simulates a simple school/college management system where users can
 
 * Add new students
 * View the list of students
-* Display student details (Id, Name, Age, Roll No, Department, Marks)
+* Display student details (LC Number, RegNo, Name, Email, Phone, Username, Semester, Course)
 
 **👩‍🏫 Teacher Management**
 
 * Add teacher details
 * View teacher list
-* Display teacher details (Name, Subject Assigned)
+* Display teacher details ( Employee No, Name, Email, Phone, Username, Password, Subject Assigned, Course)
 
 **📊 Dashboard**
 
 * Central dashboard to navigate between modules
-* Buttons to access Student, Teacher, and Fee modules
+* Buttons to access Student, Teacher, and Admin. 
 
 ---
 
@@ -54,29 +56,34 @@ School_Management_System/
 ├── src/
 │   └── School_Management_System/
 │       ├── Main/
-│       │   └── MainApp.java
+|       |   ├── MainApp.java
+│       │   └── TestDB.java
 │       │
 │       ├── GUI/
 │       │   └── SchoolGUI.java
 │       │
 │       ├── Window/
 │       │   ├── LoginWindow.java
-│       │   ├── RegisterWindow.java
-│       │   └── DashboardWindow.java
+|       |   ├── RegisterWindow.java
+│       │   ├── DashboardWindow.java
+|       |   ├── AdminDashboard.java
+|       |   ├──ForgetPasswordWindow.java
+│       │   └── ResetPasswordWindow.java
 │       │
 │       ├── Model/
 │       │   ├── AuditLog.java
 │       │   ├── Person.java
-│       │   ├── Student.java
+│       │   ├── Student.java 
 │       │   ├── Teacher.java
 │       │   ├── User.java
-│       │   ├── Course.java
-│       │   ├── Enrollment.java
-│       │   └── Grade.java
+│       │   └──Course.java
 │       │
 │       ├── Service/
 │       │   ├── SchoolService.java
 │       │   ├── StudentService.java
+|       |   ├── TeacherService.java
+|       |   ├── UserService.java
+|       |   ├── RegistrationService.java
 │       │   └── CourseService.java
 │       │
 │       ├── Exception/
@@ -86,14 +93,23 @@ School_Management_System/
 │       │
 │       ├── Panels/
 │       │   ├── StudentPanel.java
+│       │   ├── TeacherPanel.java
+│       │   ├── AdminPanel.java
 │       │   └── CoursePanel.java
 │       │
-│       ├── Data/
-│       │   ├── DatabaseUtil.java
-│       │   ├── SQLDataStore.java
-│       │   └── DataStore.java
+│       ├── Forms/
+│       │   ├── AddStudentForm.java
+│       │   ├── AddTeacherForm.java
+│       │   ├── AdminApprovalForm.java
+│       │   ├── RegistrationRequestForm.java
+│       │   ├── LoginForm.java
+│       │   └── ForgetPasswordForm.java
+│       │
+│       ├── Data/    
+│       │   └──  DatabaseUtil.java
 │       │
 │       ├── DataBase_Connection/
+│       │   ├── TestDB.java
 │       │   └── DBConnection.java
 │       │
 │       ├── DAO/
@@ -108,10 +124,10 @@ School_Management_System/
 │       │
 │       └── Util/
 │           ├── Constants.java
+│           ├── Theme.java
+│           ├── PasswordUtil.java
 │           └── ValidationUtil.java
 │
-├── Lib/
-│   └── mysql-connector-j-9.5.0.jar
 │
 ├── pom.xml
 └── .gitignore
@@ -123,6 +139,7 @@ School_Management_System/
 * Java Swing for GUI
 * AWT for layouts and events
 * IDE: IntelliJ IDEA / Vs Code
+* Postgres: pgAdmin 4 for maintenance and query, and postgresql-42.7.10 for connection. 
 
 ---
 
@@ -146,11 +163,9 @@ School_Management_System/
 ---
 
 ## 🚀 Future Enhancements
-
-* Database integration using MySQL + JDBC
-* Role-based access (Admin / Teacher / Student)
 * Attendance management
 * Report generation
+* Result management
 * Bill Management
 * Improved UI design
 
