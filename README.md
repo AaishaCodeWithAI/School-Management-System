@@ -163,9 +163,23 @@ BCS.IT (Cyber Security & Network Technology)
 
 ---
 
+## 🎓 Programmed by 
+Aaisha Jha
+Anup Bista
+Dipesh Devkota
+Famous Lama
+
+---
+
 ## 📄 License
 
 This project is for educational purposes only.
+
+---
+
+## Credit 
+
+The credit for the design work and the README project primarily goes to us, the members, with additional assistance from ChatGPT and YouTube videos.
 
 ---
 
