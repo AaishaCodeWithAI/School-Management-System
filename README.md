@@ -72,7 +72,6 @@ School_Management_System/
 │       │
 │       ├── Model/
 │       │   ├── AuditLog.java
-│       │   ├── Person.java
 │       │   ├── Student.java 
 │       │   ├── Teacher.java
 │       │   ├── User.java
