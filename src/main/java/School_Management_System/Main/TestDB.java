@@ -15,6 +15,13 @@ public class TestDB{
 
         Connection con = DriverManager.getConnection(url, username, password);
         Statement st = con.createStatement();
-        st.executeQuery(sql);
+
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+            System.out.println(rs.getString("full_name"));
+        }
+
+        con.close();
     }
 }
